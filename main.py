@@ -11,47 +11,27 @@ DATABASE_ID = os.environ.get("NOTION_DATABASE_ID")
 HEADERS = {
     "Authorization": f"Bearer {NOTION_TOKEN}",
     "Content-Type": "application/json",
-    "Notion-Version": "2022-06-28"
+    "Notion-Version": "2022-06-28",
 }
 
 
 def create_task(title, task_type="Pro", status="À faire", date=None):
     if date is None:
-        date = datetime.now().strftime('%Y-%m-%d')
+        date = datetime.now().strftime("%Y-%m-%d")
 
     data = {
-        "parent": {
-            "database_id": DATABASE_ID
-        },
+        "parent": {"database_id": DATABASE_ID},
         "properties": {
-            "Tâche": {
-                "title": [{
-                    "text": {
-                        "content": title
-                    }
-                }]
-            },
-            "Type": {
-                "select": {
-                    "name": task_type
-                }
-            },
-            "Statut": {
-                "select": {
-                    "name": status
-                }
-            },
-            "Date": {
-                "date": {
-                    "start": date
-                }
-            }
-        }
+            "Tache": {"title": [{"text": {"content": title}}]},
+            "Type": {"select": {"name": task_type}},
+            "Statut": {"select": {"name": status}},
+            "Date": {"date": {"start": date}},
+        },
     }
 
-    response = requests.post("https://api.notion.com/v1/pages",
-                             headers=HEADERS,
-                             json=data)
+    response = requests.post(
+        "https://api.notion.com/v1/pages", headers=HEADERS, json=data
+    )
 
     return response.status_code, response.json()
 
@@ -78,4 +58,3 @@ def add_task():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
-
