@@ -1,0 +1,15 @@
+# Python dependencies
+# Add specific versions as needed, e.g. package==1.0.0
+
+# Common packages
+requests
+pandas
+numpy
+
+# Uncomment as needed
+# matplotlib
+# scikit-learn
+# tensorflow
+# pytorch
+# flask
+# django
