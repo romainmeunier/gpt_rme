@@ -11,5 +11,5 @@ numpy
 # scikit-learn
 # tensorflow
 # pytorch
-# flask
+flask
 # django
